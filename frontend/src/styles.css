@@ -1,0 +1,64 @@
+/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.cor-marron { 
+    color: rgb(195, 98, 50);
+}
+
+.cor-verde { 
+    color: #2a6103;
+}
+
+.cor-verde-background {
+    background-color: #2a6103;
+    color: #ffffff;
+}
+
+.cor-marron-background {
+    background-color: rgb(195, 98, 50);
+    color: #ffffff;
+}
+
+.v-middle {
+    vertical-align: middle;
+}
+
+.msg-success {
+    background-color: #2a6103;
+    color: #fff;
+}
+
+.msg-error {
+    background-color: cor-marron;
+    color: #fff;
+}
+
+/* Success syling */
+
+.mat-button.mat-success,
+.mat-stroked-button.mat-success {
+    color: #155724;
+    background-color: #155724;
+}
+
+.mat-button.mat-success:hover,
+.mat-stroked-button.mat-success:hover {
+    color: #155724;
+    background-color: #155724;
+}
+
+.mat-raised-button.mat-success,
+.mat-flat-button.mat-success,
+.mat-fab.mat-success,
+.mat-mini-fab.mat-success {
+  color: #155724;
+  background-color: #155724;
+}
+
+.mat-icon-button.mat-success {
+  color:#155724;
+  background-color: #155724;
+}
+

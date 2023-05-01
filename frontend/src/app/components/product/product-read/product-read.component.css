@@ -1,0 +1,16 @@
+table {
+    width: 100%;
+}
+
+.alinhaNumerico {
+    text-align: right;
+}
+
+i.edit {
+    color: yellowgreen;
+    margin-right: 10px;
+}
+
+i.delete {
+    color: red;
+}
