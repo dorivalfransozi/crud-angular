@@ -38,6 +38,7 @@ import { ProductDeleteComponent } from './components/product/product-delete/prod
 
 registerLocaleData(localePt);
 
+
 @NgModule({
   declarations: [
     AppComponent,

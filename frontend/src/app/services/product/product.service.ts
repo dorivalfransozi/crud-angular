@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Product } from '../../models/product.model';
 import { EMPTY, Observable, catchError, map } from 'rxjs';
+import { User } from 'src/app/models/user.model';
 
 @Injectable({
   // singleton
@@ -10,7 +11,10 @@ import { EMPTY, Observable, catchError, map } from 'rxjs';
 })
 export class ProductService {
 
-  baseUrl = "http://127.0.0.1:3001/products";
+  //mongodb+srv://dorivalfransozi:4wk7GPnBQRGU9SId@cluster0.2l9sgg4.mongodb.net/?retryWrites=true&w=majority
+  //baseUrl = "mongodb://localhost:27017/?directConnection=true&tls=false"; // "http://127.0.0.1:3001/products";
+  //baseUrl = "mongodb+srv://dorivalfransozi:4wk7GPnBQRGU9SId@cluster0.2l9sgg4.mongodb.net/?retryWrites=true&w=majority"
+  baseUrl = "http://127.0.0.1:3000/products";
 
   constructor(private snackBar: MatSnackBar,
     private httpClient: HttpClient) { }
@@ -31,8 +35,8 @@ export class ProductService {
 
   create(product: Product): Observable<Product> {
     return this.httpClient.post<Product>(this.baseUrl, product).pipe(
-      map(obj => obj),
-      catchError(e => this.errorHandler(e))
+       map(obj => obj),
+       catchError(e => this.errorHandler(e))
     );
   }
 
@@ -66,5 +70,8 @@ export class ProductService {
       catchError(e => this.errorHandler(e))
     );
   } 
+
+
+
 
 }
