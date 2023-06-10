@@ -1,0 +1,7 @@
+<!-- signup.component.html -->
+<h2>Sign Up</h2>
+<form (ngSubmit)="signup()">
+  <input type="email" name="email" [(ngModel)]="login.email" placeholder="Email">
+  <input type="password" name="password" [(ngModel)]="login.password" placeholder="Password">
+  <button type="submit">Sign Up</button>
+</form>

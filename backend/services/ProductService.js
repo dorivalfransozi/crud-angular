@@ -3,11 +3,15 @@ module.exports = app => {
   const save = async (product) => {
 
     app.services.ValidationService.existsOrError(product.name, 'Name does not informed');
-
+    
     if(product.id) {
+        app.repositories.ProductRepositoryNoSql.update(product);
 
         return await app.repositories.ProductRepository.update(product);
     } 
+
+    // example save in mongoDB
+    app.repositories.ProductRepositoryNoSql.insert(product);
 
     return await app.repositories.ProductRepository.insert(product);
   }

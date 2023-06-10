@@ -9,7 +9,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit{
 
-  constructor(private headerService: HeaderService) { }
+  userName: string = '';
+
+  constructor(private headerService: HeaderService) {
+     this.userName = 'Login';
+   }
 
   ngOnInit(): void {
   }

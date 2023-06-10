@@ -6,6 +6,8 @@ const bcrypt = require('bcrypt-nodejs');
 module.exports = app => {
 
     const signin = async (req, res) => {
+        console.log('inicio do metodo signin');
+        
         if(!req.body.email || !req.body.password) {
             return res.status(400).send('Informe usuário e senha');
         }

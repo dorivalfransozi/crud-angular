@@ -4,6 +4,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Product } from '../../models/product.model';
 import { EMPTY, Observable, catchError, map } from 'rxjs';
 import { User } from 'src/app/models/user.model';
+import { LocalStorageService } from '../util/local-storage.service';
 
 @Injectable({
   // singleton
@@ -16,8 +17,10 @@ export class ProductService {
   //baseUrl = "mongodb+srv://dorivalfransozi:4wk7GPnBQRGU9SId@cluster0.2l9sgg4.mongodb.net/?retryWrites=true&w=majority"
   baseUrl = "http://127.0.0.1:3000/products";
 
-  constructor(private snackBar: MatSnackBar,
-    private httpClient: HttpClient) { }
+  constructor(
+    private snackBar: MatSnackBar,
+    private httpClient: HttpClient
+    ) {}
 
   showMessage(msg: string, isError: boolean = false): void {
     this.snackBar.open(msg, 'X', {
