@@ -1,5 +1,7 @@
+import { LocalStorageService } from 'src/app/services/util/local-storage.service';
 import { HeaderService } from './../../../services/template/header.service';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -11,11 +13,20 @@ export class HeaderComponent implements OnInit{
 
   userName: string = '';
 
-  constructor(private headerService: HeaderService) {
-     this.userName = 'Login';
+  constructor(private headerService: HeaderService,
+    private localStorageService: LocalStorageService,
+    private router: Router) {
+     this.userName = '';
+     //this.logoff();
    }
 
   ngOnInit(): void {
+  }
+
+  logoff(): void {
+    this.localStorageService.remove('payload');
+    this.userName = '';
+    this.router.navigate(['/']);
   }
 
   get title(): string {

@@ -39,7 +39,6 @@ import { HttpInterceptorService } from './services/util/http-interceptor.service
 import { SigninComponent } from './components/signin/signin.component';
 import { SignupComponent } from './components/signup/signup.component';
 
-
 registerLocaleData(localePt);
 
 

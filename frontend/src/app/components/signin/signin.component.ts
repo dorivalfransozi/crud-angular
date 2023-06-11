@@ -1,10 +1,9 @@
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Login } from './../../models/login.model';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/util/auth.service';
 import { LocalStorageService } from 'src/app/services/util/local-storage.service';
-
-//import { AuthService } from '../services/auth.service';
 
 
 @Component({
@@ -18,7 +17,8 @@ export class SigninComponent {
 
   constructor(private authService: AuthService,
     private router: Router,
-    private localStorageService: LocalStorageService) {}
+    private localStorageService: LocalStorageService,
+    private matSnackbar: MatSnackBar) {}
 
   signin() {
     console.log('signin - begining', this.login);
@@ -31,6 +31,12 @@ export class SigninComponent {
         this.router.navigate(['/']);
       },
       (error) => {
+        this.matSnackbar.open('Erro ao efetuar o login', 'X', {
+          duration: 3000,
+          verticalPosition: 'top'
+        });
+        this.login.email = '';
+        this.login.password = '';
         console.log('Erro de autenticação:', error);
       }
     );
