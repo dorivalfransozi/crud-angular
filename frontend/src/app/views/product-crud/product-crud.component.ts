@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { HeaderService } from 'src/app/services/template/header.service';
+import { HeaderService } from 'src/app/services/observables/header.service';
 
 
 @Component({

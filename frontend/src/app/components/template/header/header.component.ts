@@ -1,7 +1,8 @@
 import { LocalStorageService } from 'src/app/services/util/local-storage.service';
-import { HeaderService } from './../../../services/template/header.service';
+import { HeaderService } from '../../../services/observables/header.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { LoginInfoService } from 'src/app/services/observables/login-info.service';
 
 
 @Component({
@@ -15,18 +16,26 @@ export class HeaderComponent implements OnInit{
 
   constructor(private headerService: HeaderService,
     private localStorageService: LocalStorageService,
+    private loginInfoService: LoginInfoService,
     private router: Router) {
-     this.userName = '';
-     //this.logoff();
-   }
+  }
+
+  ngOnDestroy(): void {
+    //this.loginInfoService.getLoginInfo().unsubscribe();
+  }
 
   ngOnInit(): void {
+    this.loginInfoService.getLoginInfo().subscribe(loginInfo => {
+      this.userName = loginInfo.userName;
+    } );
   }
 
   logoff(): void {
     this.localStorageService.remove('payload');
-    this.userName = '';
-    this.router.navigate(['/']);
+    this.loginInfoService.setLoginInfo({
+      userName: ''
+    });
+    this.router.navigate(['/signin']);
   }
 
   get title(): string {
@@ -40,7 +49,5 @@ export class HeaderComponent implements OnInit{
   get routeUrl(): string {
     return this.headerService.headerData.routeUrl;
   }
-
-
 
 }

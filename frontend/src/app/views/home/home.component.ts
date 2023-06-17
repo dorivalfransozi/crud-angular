@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { HeaderService } from 'src/app/services/template/header.service';
+import { HeaderService } from 'src/app/services/observables/header.service';
 
 @Component({
   selector: 'app-home',

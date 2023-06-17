@@ -4,6 +4,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/util/auth.service';
 import { LocalStorageService } from 'src/app/services/util/local-storage.service';
+import { LoginInfoService } from 'src/app/services/observables/login-info.service';
 
 
 @Component({
@@ -18,7 +19,8 @@ export class SigninComponent {
   constructor(private authService: AuthService,
     private router: Router,
     private localStorageService: LocalStorageService,
-    private matSnackbar: MatSnackBar) {}
+    private matSnackbar: MatSnackBar,
+    private loginInfoService: LoginInfoService) {}
 
   signin() {
     console.log('signin - begining', this.login);
@@ -26,8 +28,10 @@ export class SigninComponent {
     this.authService.signin(this.login).subscribe(
       (response) => {
         console.log('response = ', response);
-        console.log('response.body = ', response.body);
         this.localStorageService.set('payload', response);
+        this.loginInfoService.setLoginInfo({
+          userName: response.name
+        });
         this.router.navigate(['/']);
       },
       (error) => {
@@ -37,6 +41,9 @@ export class SigninComponent {
         });
         this.login.email = '';
         this.login.password = '';
+        this.loginInfoService.setLoginInfo({
+          userName: ''
+        });
         console.log('Erro de autenticação:', error);
       }
     );

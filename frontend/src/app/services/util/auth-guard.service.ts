@@ -1,3 +1,4 @@
+import { LoginInfoService } from 'src/app/services/observables/login-info.service';
 import { Injectable } from '@angular/core';
 import { CanActivate, Router } from '@angular/router';
 import { LocalStorageService } from './local-storage.service';
@@ -11,6 +12,7 @@ export class AuthGuard implements CanActivate {
   constructor(
     private router: Router, 
     private localStorageService: LocalStorageService,
+    private loginInfoService: LoginInfoService,
     private authService: AuthService
   ) {}
 
@@ -31,11 +33,18 @@ export class AuthGuard implements CanActivate {
     
     if (isAuthenticated) {
       console.log('authentication OK...');
-      //this.router.navigate(['/']); 
+
+      this.loginInfoService.setLoginInfo({
+        userName: payload.name
+      });
+
       return true;
+
     } else {
       console.log('authentication failed... redirect to signin');
+      
       this.router.navigate(['/signin']); 
+      
       return false; 
     }
   }
