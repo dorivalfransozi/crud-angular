@@ -23,10 +23,16 @@ module.exports = app => {
     return await app.db(tableName).where({ id: id }).del();
   }
 
-  const get = () => {
-    return app.db(tableName).orderBy('name');
+  const getCount = () => {
+    return app.db(tableName).count('id as totalItems');
   }
 
-  return { getById, insert, update, remove, get }
+
+  const get = (offset, pageSize) => {
+
+    return app.db(tableName).orderBy('name').offset(offset).limit(pageSize);
+  }
+
+  return { getById, insert, update, remove, get, getCount }
 
 };

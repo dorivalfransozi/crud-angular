@@ -26,9 +26,28 @@ module.exports = app => {
       return rowsDeleted;
   }  
 
-  const get = () => {
+  const get = async (paramPage, paramPageSize) => {
     
-    return app.repositories.ProductRepository.get();
+    const DEFAULT_PAGE_SIZE = 10;
+
+    const page = parseInt(paramPage) || 0;
+    const pageSize = parseInt(paramPageSize) || DEFAULT_PAGE_SIZE;
+    
+    const offset = page * pageSize;
+
+    const totalCount = await app.repositories.ProductRepository.getCount();
+    const totalItems = parseInt(totalCount[0].totalItems);
+    const totalPages = parseInt(totalItems / pageSize + 1);
+
+    const dataReturn = await app.repositories.ProductRepository.get(offset, pageSize);
+
+    return  {
+      data: dataReturn,
+      totalItems: totalItems, 
+      totalPages: totalPages,
+      currentPage: page
+    }
+
   }
 
   const getById = (id) => {

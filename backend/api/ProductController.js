@@ -27,7 +27,9 @@ module.exports = app => {
     }
 
     const get = (req, res) => {
-        app.services.ProductService.get()
+        console.log(req, req.query, req.query.page, req.query.pageSize, req.params);
+        
+        app.services.ProductService.get(parseInt(req.query.page), parseInt(req.query.pageSize))
             .then(products => res.json(products))
             .catch(err => res.status(500).send(err));
     }
