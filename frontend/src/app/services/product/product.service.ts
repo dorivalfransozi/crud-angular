@@ -5,6 +5,7 @@ import { Product } from '../../models/product.model';
 import { EMPTY, Observable, catchError, map } from 'rxjs';
 import { User } from 'src/app/models/user.model';
 import { LocalStorageService } from '../util/local-storage.service';
+import { PaginationResult } from 'src/app/models/pagination-result.model';
 
 @Injectable({
   // singleton
@@ -43,10 +44,15 @@ export class ProductService {
     );
   }
 
-  read(): Observable<Product[]> {
-    return this.httpClient.get<Product[]>(this.baseUrl).pipe(
+  read(page: number, pageSize: number): Observable<PaginationResult<Product>> {
+    const url = `${this.baseUrl}?page=${page}&pageSize=${pageSize}`;
+
+    return this.httpClient.get<PaginationResult<Product>>(url).pipe(
       map(obj => obj),
-      catchError(e => this.errorHandler(e))
+      catchError(e => {
+        console.log(e);
+        return this.errorHandler(e);
+      })
     );
   }
 
