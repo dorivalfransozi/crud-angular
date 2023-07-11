@@ -2,7 +2,7 @@ const admin = require('./admin.js');
 
 module.exports = app => {
 
-    // as 3 unicas urls que nao serao protegidas (serao publicas)
+    // 3 uniques URLs don't be protected (they're publics)
     app.post('/signup', app.api.user.save);
     app.post('/signin', app.api.auth.signin);
     app.post('/validateToken', app.api.auth.validateToken);
