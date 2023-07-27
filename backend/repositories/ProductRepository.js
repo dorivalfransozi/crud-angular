@@ -30,9 +30,19 @@ module.exports = app => {
 
   const get = (offset, pageSize) => {
 
-    return app.db(tableName).orderBy('name').offset(offset).limit(pageSize);
+    return app.db(tableName)
+      .orderBy('name')
+      .offset(offset)
+      .limit(pageSize);
   }
 
-  return { getById, insert, update, remove, get, getCount }
+  const getByName = (name) => {
+
+    return app.db(tableName)
+      .orderBy('name')
+      .where('name', 'like', `%${name}%`);
+  }
+
+  return { getById, insert, update, remove, get, getCount, getByName }
 
 };

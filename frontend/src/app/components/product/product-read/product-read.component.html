@@ -1,3 +1,16 @@
+<div class="toolbar">
+  <button mat-mini-fab class="itemtoolbar" color="primary">
+    <a routerLink="/products/create">
+      <mat-icon>add</mat-icon>
+    </a>
+  </button>
+  <div [formGroup]="formSearchProduct" class="itemtoolbar">
+    <input type="search" formControlName="filterProduct" class="inputfilter">
+    <button mat-mini-fab class="itemtoolbar" (click)="cleanInput()"><mat-icon>clear</mat-icon></button>
+  </div>
+  <button mat-mini-fab class="itemtoolbar"><mat-icon>search</mat-icon></button>
+</div>
+
 <div class="mat-elevation-z2">
     <table mat-table [dataSource]="products">
       <!-- Id Column -->

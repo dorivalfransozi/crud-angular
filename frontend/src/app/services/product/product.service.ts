@@ -57,15 +57,23 @@ export class ProductService {
   }
 
   readById(id: string): Observable<Product> {
-    const url = `${this.baseUrl}/${id}`;
+    const url = `${this.baseUrl}/id/${id}`;
     return this.httpClient.get<Product>(url).pipe(
       map(obj => obj),
       catchError(e => this.errorHandler(e))
     );
   } 
 
+  readByName(name: string): Observable<Array<Product>> {
+    const url = `${this.baseUrl}/name/${name}`;
+    return this.httpClient.get<Array<Product>>(url).pipe(
+      map(obj => obj),
+      catchError(e => this.errorHandler(e))
+    );
+  } 
+
   update(product: Product): Observable<Product> {
-    const url = `${this.baseUrl}/${product.id}`;
+    const url = `${this.baseUrl}/id/${product.id}`;
     return this.httpClient.put<Product>(url, product).pipe(
       map(obj => obj),
       catchError(e => this.errorHandler(e))
@@ -73,7 +81,7 @@ export class ProductService {
   }
 
   delete(id: number): Observable<Product> {
-    const url = `${this.baseUrl}/${id}`;
+    const url = `${this.baseUrl}/id/${id}`;
     return this.httpClient.delete<Product>(url).pipe(
       map(obj => obj),
       catchError(e => this.errorHandler(e))

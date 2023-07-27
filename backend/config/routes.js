@@ -8,11 +8,15 @@ module.exports = app => {
     app.post('/validateToken', app.api.auth.validateToken);
 
 
-    app.route('/products/:id')
+    app.route('/products/id/:id')
         .all(app.config.passport.authenticate())
         .put(app.api.ProductController.save)
         .get(app.api.ProductController.getById)
         .delete(app.api.ProductController.remove);
+
+    app.route('/products/name/:name')
+        .all(app.config.passport.authenticate())
+        .get(app.api.ProductController.getByName);
 
     app.route('/products')
         .all(app.config.passport.authenticate())

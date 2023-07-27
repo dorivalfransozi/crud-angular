@@ -55,6 +55,11 @@ module.exports = app => {
     return app.repositories.ProductRepository.getById(id);
   }
 
-  return { save, remove, get, getById }
+  const getByName = (name) => {
+    
+    return app.repositories.ProductRepository.getByName(name);
+  }
+
+  return { save, remove, get, getById, getByName }
 };
 

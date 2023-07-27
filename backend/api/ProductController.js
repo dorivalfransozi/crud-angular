@@ -40,5 +40,11 @@ module.exports = app => {
             .catch(err => res.status(500).send(err));
     }
 
-    return { save, remove, get, getById }
+    const getByName = (req, res) => {
+        app.services.ProductService.getByName(req.params.name)
+            .then(products => res.json(products))
+            .catch(err => res.status(500).send(err));
+    }
+
+    return { save, remove, get, getById, getByName }
 }
